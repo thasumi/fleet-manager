@@ -1,0 +1,99 @@
+[
+    {
+      "marca": "Volkswagen",
+      "modelos": [
+        "Gol",
+        "Fox",
+        "Up",
+        "Polo",
+        "Jetta",
+        "Tiguan",
+        "Saveiro"
+      ]
+    },
+    {
+      "marca": "Chevrolet",
+      "modelos": [
+        "Onix",
+        "Prisma",
+        "Cruze",
+        "Cobalt",
+        "Tracker",
+        "Spin",
+        "S10"
+      ]
+    },
+    {
+      "marca": "Ford",
+      "modelos": [
+        "Fiesta",
+        "Focus",
+        "Fusion",
+        "EcoSport",
+        "Ranger",
+        "Edge",
+        "Mustang"
+      ]
+    },
+    {
+      "marca": "Fiat",
+      "modelos": [
+        "Palio",
+        "Uno",
+        "Siena",
+        "Strada",
+        "Punto",
+        "Toro",
+        "Mobi"
+      ]
+    },
+    {
+      "marca": "Toyota",
+      "modelos": [
+        "Corolla",
+        "Hilux",
+        "Etios",
+        "Rav4",
+        "Camry",
+        "Yaris",
+        "Prius"
+      ]
+    },
+    {
+      "marca": "Honda",
+      "modelos": [
+        "Civic",
+        "Fit",
+        "City",
+        "HR-V",
+        "CR-V",
+        "Accord",
+        "Pilot"
+      ]
+    },
+    {
+      "marca": "Hyundai",
+      "modelos": [
+        "HB20",
+        "Creta",
+        "Elantra",
+        "i30",
+        "Tucson",
+        "Santa Fe",
+        "Veloster"
+      ]
+    },
+    {
+      "marca": "Jeep",
+      "modelos": [
+        "Renegade",
+        "Compass",
+        "Cherokee",
+        "Wrangler",
+        "Grand Cherokee",
+        "Gladiator",
+        "Commander"
+      ]
+    }
+  ]
+  
