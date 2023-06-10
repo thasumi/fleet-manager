@@ -4,10 +4,10 @@ const vehicleController = require('../controllers/vehicleController');
 const swagger = require('../swagger');
 module.exports = router;
 
-// Rota para obter todos os usuários
+// route for all vehicles
 router.get('/allVehicles', vehicleController.getAllVehicles);
 
-// Rota para obter um usuário pelo ID
+// route for vehicle by id
 //router.get('/vehicleById/:id', vehicleController.getVehicleById);
 
 // Rota para criar um novo usuário
