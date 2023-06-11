@@ -204,7 +204,7 @@
                 "id": {
                     "type": "string"
                 },
-                "placa": {
+                "plate": {
                     "type": "string"
                 },
                 "chassi": {
@@ -213,13 +213,13 @@
                 "renavam": {
                     "type": "string"
                 },
-                "modelo": {
+                "model": {
                     "type": "string"
                 },
-                "marca": {
+                "brand": {
                     "type": "string"
                 },
-                "ano": {
+                "year": {
                     "type": "number"
                 }
             }
@@ -251,7 +251,7 @@
         "Vehicle": {
             "type": "object",
             "properties": {
-                "placa": {
+                "plate": {
                     "type": "string"
                 },
                 "chassi": {
@@ -260,13 +260,13 @@
                 "renavam": {
                     "type": "string"
                 },
-                "modelo": {
+                "model": {
                     "type": "string"
                 },
-                "marca": {
+                "brand": {
                     "type": "string"
                 },
-                "ano": {
+                "year": {
                     "type": "number"
                 }
             }

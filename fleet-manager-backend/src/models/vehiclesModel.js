@@ -1,9 +1,9 @@
 class Vehicle {
     constructor(id, plate, renavam, model, brand, year) {
       this.id = id;
-      this.name = plate;
-      this.email = renavam;
-      this.age = model;
+      this.plate = plate;
+      this.renavam = renavam;
+      this.model = model;
       this.brand = brand;
       this.year = year;
     }
