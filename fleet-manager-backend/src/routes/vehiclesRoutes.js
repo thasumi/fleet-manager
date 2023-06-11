@@ -7,8 +7,8 @@ module.exports = router;
 // route for all vehicles
 router.get('/allVehicles', vehicleController.getAllVehicles);
 
-// route for vehicle by id
-//router.get('/vehicleById/:id', vehicleController.getVehicleById);
+//  route for vehicle by id
+router.get('/vehicleById/id', vehicleController.getVehicleById);
 
 // Rota para criar um novo usuário
 //router.post('/createVehicle', vehicleController.createVehicle);
