@@ -1,0 +1,275 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Ai qualquer merda",
+        "version": "1.0.0",
+        "title": "Tasks API",
+        "contact": {
+            "email": "abc@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": [
+        "http"
+    ],
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/allVehicles": {
+            "get": {
+                "summary": "Get all vehicles",
+                "description": "Gets all the vehicles in the db",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/allVehiclesResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vehicleById/{id}": {
+            "get": {
+                "summary": "Get a vehicle by Id",
+                "description": "Gets a vehicle in the db",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "vehicle id that you want informations",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/allVehiclesResponse"
+                            }
+                        },
+                        "404": {
+                            "description": "successful operation",
+                            "schema": {
+                                "items": {
+                                    "$ref": "#/definitions/InvalidResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/createNewVehicle": {
+            "post": {
+                "summary": "Creates a vehicle",
+                "description": "Creates a new vehicle in the db",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "vehicle",
+                        "in": "body",
+                        "description": "vehicle object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "vehicle": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Vehicle"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/createVehicleResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/updateVehicleById": {
+            "put": {
+                "summary": "Updates a vehicle",
+                "description": "Updates a vehicle in the db",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "vehicle",
+                        "in": "body",
+                        "description": "vehicle object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "vehicle": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/allVehiclesResponse"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/createVehicleResponse"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "successful operation",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/InvalidResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteVehicleById/{id}": {
+            "delete": {
+                "summary": "Deletes a vehicle",
+                "description": "Deletes a specific vehicle from the db",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "vehicle id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/deleteVehicleResponse"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid vehicle id",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "allVehiclesResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "placa": {
+                    "type": "string"
+                },
+                "chassi": {
+                    "type": "string"
+                },
+                "renavam": {
+                    "type": "string"
+                },
+                "modelo": {
+                    "type": "string"
+                },
+                "marca": {
+                    "type": "string"
+                },
+                "ano": {
+                    "type": "number"
+                }
+            }
+        },
+        "deleteVehicleResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "createVehicleResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "Vehicle": {
+            "type": "object",
+            "properties": {
+                "placa": {
+                    "type": "string"
+                },
+                "chassi": {
+                    "type": "string"
+                },
+                "renavam": {
+                    "type": "string"
+                },
+                "modelo": {
+                    "type": "string"
+                },
+                "marca": {
+                    "type": "string"
+                },
+                "ano": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
