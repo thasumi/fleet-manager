@@ -29,7 +29,7 @@
                             <td class="align-center click"><i class="bi bi-pencil-square click" (click)="editVehicle(vehicle,'update')" data-mdb-target="#exampleModal"
                                 ></i>
                             </td>
-                            <td class="align-center click"><i class="bi bi-trash"></i></td>
+                            <td (click)="deleteVehicle(vehicle.id)" class="align-center click"><i class="bi bi-trash"></i></td>
                         </tr>
                     </tbody>
                 </table>

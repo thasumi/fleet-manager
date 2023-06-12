@@ -22,4 +22,8 @@ export class FleetManagerService {
     return this.http.put<Vehicle>(`http://localhost:3000/updateVehicleById`,{vehicle:vehicle});
   }
 
+  deleteVehicleById(vehicleId: string) {
+    return this.http.delete<Vehicle>(`http://localhost:3000/deleteVehicleById/${vehicleId}/`);
+  }
+
 }
