@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavigateModule } from './modules/navigate/navigate.module';
 import { FleetManagerModule } from './modules/fleet-manager/fleet-manager.module';
-import { NavegationModule } from './modules/navegation/navegation.module';
-import { SharedModule } from './modules/shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FleetManagerModule,
-    NavegationModule,
-    SharedModule
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    NavigateModule,
+    FleetManagerModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

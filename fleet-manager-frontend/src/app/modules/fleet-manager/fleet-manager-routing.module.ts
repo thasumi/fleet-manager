@@ -4,7 +4,8 @@ import { FleetGridComponent } from './components/fleet-grid/fleet-grid.component
 
 const routes: Routes = [
   {path: '', component: FleetGridComponent},
-  ];
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

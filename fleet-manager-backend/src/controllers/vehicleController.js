@@ -2,7 +2,15 @@ let vehicles = require('../utils/vehicles.db.json')
 const crypto = require("crypto");
 const fs = require('fs');
 
+
+const setHeaders = (res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true)
+}
 const getAllVehicles = (req, res) => {
+  setHeaders(res);
   res.json(vehicles);
 };
 
