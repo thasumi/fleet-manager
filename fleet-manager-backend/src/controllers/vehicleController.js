@@ -15,6 +15,7 @@ const getAllVehicles = (req, res) => {
 };
 
 const getVehicleById = (req, res) => {
+  setHeaders(res);
   const { id } = req.params;
 
   // Buscar o veículo pelo ID
@@ -26,6 +27,7 @@ const getVehicleById = (req, res) => {
 }
 
 const createNewVehicle = (req, res) => {
+  setHeaders(res);
   const newVehicle = req.body.vehicle;
   newVehicle.id = crypto.randomBytes(16).toString("hex");
   vehicles.push(newVehicle);
@@ -34,6 +36,7 @@ const createNewVehicle = (req, res) => {
 }
 
 const updateVehicleById = (req, res) => {
+  setHeaders(res);
   const vehicleIndex = vehicles.findIndex(vehicle => vehicle.id === req.body.vehicle.id);
   if (vehicleIndex >= 0) {
     vehicles[vehicleIndex] = { ...req.body.vehicle };
@@ -45,6 +48,7 @@ const updateVehicleById = (req, res) => {
 }
 
 const deleteVehicleById = (req, res) => {
+  setHeaders(res);
   const { id } = req.params;
   const initLength = vehicles.length;
   vehicles = vehicles.filter((vehicle => vehicle.id !== id));
