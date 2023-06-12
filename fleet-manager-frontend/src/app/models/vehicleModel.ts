@@ -1,7 +1,7 @@
 export interface Vehicle {
     id: string;
     plate: string;
-    chassis: string;
+    chassi: string;
     renavam: string;
     year: number;
     brand: string;
@@ -10,7 +10,7 @@ export interface Vehicle {
 
 export interface VehicleCreate {
     plate: string;
-    chassis: string;
+    chassi: string;
     renavam: string;
     year: number;
     brand: string;

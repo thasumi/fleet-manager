@@ -5,6 +5,7 @@ import { FleetManagerRoutingModule } from './fleet-manager-routing.module';
 import { FleetGridComponent } from './components/fleet-grid/fleet-grid.component';
 import { CreateVehicleComponent } from './components/create-vehicle/create-vehicle.component';
 import { UpdateVehicleComponent } from './components/update-vehicle/update-vehicle.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { UpdateVehicleComponent } from './components/update-vehicle/update-vehic
   ],
   imports: [
     CommonModule,
-    FleetManagerRoutingModule
+    FleetManagerRoutingModule,
+    SharedModule
   ]
 })
 export class FleetManagerModule { }
