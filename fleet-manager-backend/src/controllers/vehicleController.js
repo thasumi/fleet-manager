@@ -3,19 +3,11 @@ const crypto = require("crypto");
 const fs = require('fs');
 
 
-const setHeaders = (res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET'); // If needed
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
-  res.setHeader('Access-Control-Allow-Credentials', true)
-}
 const getAllVehicles = (req, res) => {
-  setHeaders(res);
   res.json(vehicles);
 };
 
 const getVehicleById = (req, res) => {
-  setHeaders(res);
   const { id } = req.params;
 
   // Buscar o veículo pelo ID
@@ -27,7 +19,6 @@ const getVehicleById = (req, res) => {
 }
 
 const createNewVehicle = (req, res) => {
-  setHeaders(res);
   const newVehicle = req.body.vehicle;
   newVehicle.id = crypto.randomBytes(16).toString("hex");
   vehicles.push(newVehicle);
@@ -36,7 +27,6 @@ const createNewVehicle = (req, res) => {
 }
 
 const updateVehicleById = (req, res) => {
-  setHeaders(res);
   const vehicleIndex = vehicles.findIndex(vehicle => vehicle.id === req.body.vehicle.id);
   if (vehicleIndex >= 0) {
     vehicles[vehicleIndex] = { ...req.body.vehicle };
@@ -48,7 +38,6 @@ const updateVehicleById = (req, res) => {
 }
 
 const deleteVehicleById = (req, res) => {
-  setHeaders(res);
   const { id } = req.params;
   const initLength = vehicles.length;
   vehicles = vehicles.filter((vehicle => vehicle.id !== id));

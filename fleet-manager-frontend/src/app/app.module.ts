@@ -7,6 +7,9 @@ import { NavigateModule } from './modules/navigate/navigate.module';
 import { FleetManagerModule } from './modules/fleet-manager/fleet-manager.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,11 @@ import { SharedModule } from './modules/shared/shared.module';
     NavigateModule,
     FleetManagerModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-bottom-right'
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Vehicle } from 'src/app/models/vehicleModel';
 import { FleetManagerService } from 'src/app/services/fleet-manager.service';
-import { UpdateVehicleComponent } from '../update-vehicle/update-vehicle.component';
+import { ModalComponent } from 'src/app/modules/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-fleet-grid',
@@ -11,7 +11,8 @@ import { UpdateVehicleComponent } from '../update-vehicle/update-vehicle.compone
   providers: [FleetManagerService]
 })
 export class FleetGridComponent {
-  vehicles : Vehicle[] = [];
+  vehicles: Vehicle[] = [];
+  activeModal!: NgbModalRef;
 
   constructor(
     private fleetManagerService: FleetManagerService,
@@ -19,13 +20,22 @@ export class FleetGridComponent {
 
   }
   ngOnInit(): void {
-    this.fleetManagerService.getAllVehicles().subscribe(res => {
-      this.vehicles = res;
-    })
+    this.getVehicles();
+
   }
 
-  editVehicle(vehicle:Vehicle) {
-    const activeModal: NgbModalRef = this.modalService.open(UpdateVehicleComponent, { size: 'lg' });
-    activeModal.componentInstance.vehicle = vehicle;
+  editVehicle(vehicle: Vehicle, action: string) {
+    this.activeModal = this.modalService.open(ModalComponent, { size: 'lg' });
+    this.activeModal.componentInstance.vehicle = vehicle;
+    this.activeModal.componentInstance.action = action;
+    this.activeModal.dismissed.subscribe(() => {
+      this.getVehicles();
+    });
+  }
+
+  getVehicles() {
+    this.fleetManagerService.getAllVehicles().subscribe(res => {
+      this.vehicles = res;
+    });
   }
 }

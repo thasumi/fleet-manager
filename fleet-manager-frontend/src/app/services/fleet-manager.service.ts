@@ -18,4 +18,8 @@ export class FleetManagerService {
     return this.http.get<Vehicle>(`http://localhost:3000/allVehicles/${id}/`);
   }
 
+  updateVehicleById(vehicle:Vehicle) {
+    return this.http.put<Vehicle>(`http://localhost:3000/updateVehicleById`,{vehicle:vehicle});
+  }
+
 }
