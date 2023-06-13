@@ -111,7 +111,6 @@ export class ModalComponent {
       if (confirm("Deseja realmente criar este veículo?")) {
         if (this.vehicleForm.dirty && this.vehicleForm.valid) {
           this.createdVehicle = { ...this.vehicleForm.value }
-
           this.fleetManagerService.createVehicle(this.createdVehicle).subscribe({
             next: (success) => {
               this.processSuccess(success)
@@ -132,7 +131,7 @@ export class ModalComponent {
   }
 
   processFail(response: any) {
-    this.toastr.error(response.error, ('Erro'), { timeOut: 30000, extendedTimeOut: 30000 });
+    this.toastr.error(response.error.error, ('Erro'), { timeOut: 30000, extendedTimeOut: 30000 });
     this.spinner.hide();
   }
 }
