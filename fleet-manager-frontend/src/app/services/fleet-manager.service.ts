@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Vehicle, VehicleCreate } from '../models/vehicleModel';
+import { BrandsAndModels, Vehicle, VehicleCreate } from '../models/vehicleModel';
 
 
 @Injectable({
@@ -28,6 +28,10 @@ export class FleetManagerService {
 
   createVehicle(vehicle: VehicleCreate) {
     return this.http.post(`http://localhost:3000/createNewVehicle`, {vehicle:vehicle});
+  }
+
+  getBrandsAndModels() {
+    return this.http.get<BrandsAndModels[]>(`http://localhost:3000/brandsAndModels`);
   }
 
 }

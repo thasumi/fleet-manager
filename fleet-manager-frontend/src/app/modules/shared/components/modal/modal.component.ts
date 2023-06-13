@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Vehicle, VehicleCreate } from 'src/app/models/vehicleModel';
+import { BrandsAndModels, Vehicle, VehicleCreate } from 'src/app/models/vehicleModel';
 import { FleetManagerService } from 'src/app/services/fleet-manager.service';
 
 @Component({
@@ -16,11 +16,14 @@ export class ModalComponent {
   @Input() vehicle!: Vehicle;
   @Input() action: string = '';
 
-
   vehicleForm!: FormGroup;
   formResult: string = '';
   updatedVehicle!: Vehicle;
   createdVehicle!: VehicleCreate;
+  brand: string = '';
+  models: string[] = [];
+  filteredBrand!: BrandsAndModels[];
+  brandsAndModels: BrandsAndModels[] = [];
 
   constructor(
     private modalService: NgbModal,
@@ -30,7 +33,7 @@ export class ModalComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.vehicle)
+    this.getBrandsAndModels();
     this.vehicleForm = this.formBuilder.group({
       plate: ['', Validators.required],
       brand: ['', Validators.required],
@@ -39,7 +42,9 @@ export class ModalComponent {
       renavam: ['', Validators.required],
       year: ['', Validators.required],
     })
-    this.checkEditOrCreate();
+    this.vehicleForm.controls.brand.valueChanges.subscribe(() => {
+      this.brandChangeFilter();
+    });
 
   }
 
@@ -47,8 +52,28 @@ export class ModalComponent {
     this.modalService.dismissAll();
   }
 
+  getBrandsAndModels() {
+    this.fleetManagerService.getBrandsAndModels().subscribe(res => {
+      this.brandsAndModels = res;
+      this.checkEditOrCreate();
+    })
+  }
+
+  brandChangeFilter() {
+    this.models = [];
+    this.brand = this.vehicleForm.get('brand')?.value;
+    if (this.brand) {
+      this.filteredBrand = this.brandsAndModels.filter(item => item.brand === this.brand);
+      this.models = this.filteredBrand[0].models;
+    }
+    return
+  }
+
   checkEditOrCreate() {
     if (this.action === 'update') {
+      this.filteredBrand = this.brandsAndModels.filter(item => item.brand === this.vehicle.brand);
+      console.log(this.filteredBrand)
+      console.log(this.vehicle.model);
       this.vehicleForm.get('plate')?.setValue(this.vehicle.plate);
       this.vehicleForm.get('brand')?.setValue(this.vehicle.brand);
       this.vehicleForm.get('model')?.setValue(this.vehicle.model);
@@ -59,7 +84,8 @@ export class ModalComponent {
   }
 
 
-  //update
+
+
   submit() {
     if (this.action === 'update') {
       if (confirm("Deseja realmente editar este veículo?")) {
@@ -92,8 +118,6 @@ export class ModalComponent {
       }
     }
   }
-
-  //create
 
 
   processSuccess(response: any) {

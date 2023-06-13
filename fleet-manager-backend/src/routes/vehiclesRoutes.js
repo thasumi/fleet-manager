@@ -9,13 +9,17 @@ router.get('/allVehicles', vehicleController.getAllVehicles);
 //  route for vehicle by id
 router.get('/vehicleById/:id', vehicleController.getVehicleById);
 
-// Rota para criar um novo usuário
+// route to create a new vehicle
 router.post('/createNewVehicle', vehicleController.createNewVehicle);
 
-// Rota para atualizar um usuário pelo ID
+// route to update a vehicle by id
 router.put('/updateVehicleById', vehicleController.updateVehicleById);
 
-// Rota para excluir um usuário pelo ID
+// route to delete a vehicle by id
 router.delete('/deleteVehicleById/:id', vehicleController.deleteVehicleById);
+
+// rout to get brands and models
+router.get('/brandsAndModels', vehicleController.getBrandsAndModels);
+
 
 

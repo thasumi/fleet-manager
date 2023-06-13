@@ -1,4 +1,5 @@
 let vehicles = require('../utils/vehicles.db.json')
+let brandsAndModels = require('../utils/brands.db.json')
 const crypto = require("crypto");
 const fs = require('fs');
 
@@ -48,11 +49,15 @@ const deleteVehicleById = (req, res) => {
   res.status(200).json({message: 'Veículo removido com sucesso'});
 }
 
-// Exportando a função da controller
+const getBrandsAndModels = (req, res) => {
+  res.json(brandsAndModels);
+}
+
 module.exports = {
   getAllVehicles,
   getVehicleById,
   createNewVehicle,
   deleteVehicleById,
-  updateVehicleById
+  updateVehicleById,
+  getBrandsAndModels
 };
