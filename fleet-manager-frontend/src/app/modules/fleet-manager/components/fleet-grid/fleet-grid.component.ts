@@ -48,8 +48,9 @@ export class FleetGridComponent {
           change.plate.toLowerCase().includes(text.toLowerCase()) ||
           change.year.toString().includes(text.toLowerCase()) ||
           change.chassi.toLowerCase().includes(text.toLowerCase()) ||
-          change.renavam.toLowerCase().includes(text.toLowerCase()) ||
-          change.brand.toLowerCase().includes(text.toLowerCase()))
+          change.renavam.toString().includes(text.toLowerCase()) ||
+          change.brand.toLowerCase().includes(text.toLowerCase()) ||
+          change.model.toLowerCase().includes(text.toLowerCase()))
       })
     }
     return this.unfilteredVehicles;

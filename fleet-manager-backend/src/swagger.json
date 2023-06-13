@@ -111,6 +111,12 @@
                                 "$ref": "#/definitions/createVehicleResponse"
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Already exists a vehicle if this plate",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
                     }
                 }
             }
