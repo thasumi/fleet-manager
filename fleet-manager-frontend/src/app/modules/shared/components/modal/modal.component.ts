@@ -60,19 +60,35 @@ export class ModalComponent {
 
 
   //update
-  updateVehicle() {
-    if (confirm("Deseja realmente editar este veículo?")) {
-      if (this.vehicleForm.dirty && this.vehicleForm.valid) {
-        this.updatedVehicle = { ...this.vehicleForm.value }
-        this.updatedVehicle.id = this.vehicle.id;
+  submit() {
+    if (this.action === 'update') {
+      if (confirm("Deseja realmente editar este veículo?")) {
+        if (this.vehicleForm.dirty && this.vehicleForm.valid) {
+          this.updatedVehicle = { ...this.vehicleForm.value }
+          this.updatedVehicle.id = this.vehicle.id;
 
-        this.fleetManagerService.updateVehicleById(this.updatedVehicle).subscribe({
-          next: (success) => {
-            this.processSuccess(success)
-          }, error: (fail) => {
-            this.processFail(fail)
-          }
-        })
+          this.fleetManagerService.updateVehicleById(this.updatedVehicle).subscribe({
+            next: (success) => {
+              this.processSuccess(success)
+            }, error: (fail) => {
+              this.processFail(fail)
+            }
+          })
+        }
+      }
+    } else {
+      if (confirm("Deseja realmente criar este veículo?")) {
+        if (this.vehicleForm.dirty && this.vehicleForm.valid) {
+          this.createdVehicle = { ...this.vehicleForm.value }
+
+          this.fleetManagerService.createVehicle(this.createdVehicle).subscribe({
+            next: (success) => {
+              this.processSuccess(success)
+            }, error: (fail) => {
+              this.processFail(fail)
+            }
+          })
+        }
       }
     }
   }

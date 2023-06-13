@@ -4,6 +4,7 @@ import { Vehicle } from 'src/app/models/vehicleModel';
 import { FleetManagerService } from 'src/app/services/fleet-manager.service';
 import { ModalComponent } from 'src/app/modules/shared/components/modal/modal.component';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-fleet-grid',
@@ -14,16 +15,59 @@ import { ToastrService } from 'ngx-toastr';
 export class FleetGridComponent {
   vehicles: Vehicle[] = [];
   activeModal!: NgbModalRef;
+  page: number = 1;
+  pageSize: number = 10;
+  unfilteredVehicles: Vehicle[] = [];
+  searchForm= new FormControl('')
+  
+
 
   constructor(
     private fleetManagerService: FleetManagerService,
     private modalService: NgbModal,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder,
+  ) {
 
   }
   ngOnInit(): void {
     this.getVehicles();
 
+    this.searchForm.valueChanges.subscribe(change => {
+      this.vehicles = this.search(change);
+    })
+  }
+
+//SEARCH INPUT
+  search(text: any): Vehicle[] {
+    if (this.searchForm.value) {
+      return this.unfilteredVehicles.filter(change => {
+        return (
+          change.plate.toLowerCase().includes(text.toLowerCase()) ||
+          change.year.toString().includes(text.toLowerCase()) ||
+          change.chassi.toLowerCase().includes(text.toLowerCase()) ||
+          change.renavam.toLowerCase().includes(text.toLowerCase()) ||
+          change.brand.toLowerCase().includes(text.toLowerCase()))
+      })
+    }
+    return this.unfilteredVehicles;
+
+  }
+
+  //CRUD VEHICLE
+  createVehicle(action: string) {
+    this.activeModal = this.modalService.open(ModalComponent, { size: 'lg' });
+    this.activeModal.componentInstance.action = action;
+    this.activeModal.dismissed.subscribe(() => {
+      this.getVehicles();
+    });
+  }
+
+  getVehicles() {
+    this.fleetManagerService.getAllVehicles().subscribe(res => {
+      this.vehicles = res;
+      this.unfilteredVehicles = this.vehicles;
+    });
   }
 
   editVehicle(vehicle: Vehicle, action: string) {
@@ -45,12 +89,6 @@ export class FleetGridComponent {
         }
       });
     }
-  }
-
-  getVehicles() {
-    this.fleetManagerService.getAllVehicles().subscribe(res => {
-      this.vehicles = res;
-    });
   }
 
   processSuccess(response: any) {

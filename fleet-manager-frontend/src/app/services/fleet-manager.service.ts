@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Vehicle } from '../models/vehicleModel';
+import { Vehicle, VehicleCreate } from '../models/vehicleModel';
 
 
 @Injectable({
@@ -24,6 +24,10 @@ export class FleetManagerService {
 
   deleteVehicleById(vehicleId: string) {
     return this.http.delete<Vehicle>(`http://localhost:3000/deleteVehicleById/${vehicleId}/`);
+  }
+
+  createVehicle(vehicle: VehicleCreate) {
+    return this.http.post(`http://localhost:3000/createNewVehicle`, {vehicle:vehicle});
   }
 
 }

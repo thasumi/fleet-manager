@@ -4,17 +4,17 @@
         <h5 *ngIf="action === 'create' " class="modal-title">NOVO VEÍCULO</h5>
         <button type="button" class="btn-close" (click)="close()"></button>
     </div>
-    <form (ngSubmit)="updateVehicle()" [formGroup]="vehicleForm">
+    <form (ngSubmit)="submit()" [formGroup]="vehicleForm">
         <div class="modal-body">
             <div class="container-fluid" style="color: #5e6e82;">
                 <div class="row margin-form ">
                     <div class="form-group col-5">
                         <label for="plate">Placa:</label>
-                        <input formControlName="plate" id="plate" type="text" class="form-control">
+                        <input formControlName="plate" id="plate" type="text" class="form-control" maxlength="7">
                     </div>
                     <div class="col-5">
                         <label for="year">Ano:</label>
-                        <input formControlName="year" id="year" type="number" class="form-control">
+                        <input formControlName="year" id="year" type="number" class="form-control" maxlength="4">
                     </div>
                 </div>
                 <div class="row margin-form ">
@@ -30,17 +30,17 @@
                 <div class="row margin-form ">
                     <div class="col-5">
                         <label for="chassi">Chassi:</label>
-                        <input formControlName="chassi" id="chassi" type="text" class="form-control">
+                        <input formControlName="chassi" id="chassi" type="text" class="form-control"maxlength="17">
                     </div>
                     <div class="col-5">
                         <label for="renavam">Renavam:</label>
-                        <input formControlName="renavam" id="renavam" type="text" class="form-control">
+                        <input formControlName="renavam" id="renavam" type="number" class="form-control" maxlength="11">
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="vehicleForm.invalid">Salvar</button>
         </div>
     </form>
