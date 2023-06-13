@@ -1,0 +1,101 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="action === 'update' " class="modal-title">EDITAR VEÍCULO</h5>
+        <h5 *ngIf="action === 'create' " class="modal-title">NOVO VEÍCULO</h5>
+        <button type="button" class="btn-close" (click)="close()"></button>
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]="vehicleForm">
+        <div class="modal-body">
+            <div class="container-fluid" style="color: #5e6e82;">
+                <div class="row margin-form ">
+                    <div class="form-group col-5">
+                        <label for="plate">Placa:</label>
+                        <input formControlName="plate" id="plate" type="text" class="form-control text-uppercase" maxlength="7"
+                            [ngClass]="{'is-invalid': vehicleForm.get('plate')?.errors && (vehicleForm.get('plate')?.touched || vehicleForm.get('plate')?.dirty),
+                  'is-valid': !vehicleForm.get('plate')?.errors && (vehicleForm.get('plate')?.touched || vehicleForm.get('plate')?.dirty)} || vehicleForm.get('plate')?.errors?.invalidPlate">
+                        <span class="text-danger"
+                            *ngIf="vehicleForm.get('plate')?.errors?.required && (vehicleForm.get('plate')?.touched || vehicleForm.get('plate')?.dirty)">
+                            <p>Preencha o campo Placa</p>
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="vehicleForm.get('plate')?.errors?.invalidPlate">
+                            <p>Placa inválida</p>
+                        </span>
+                    </div>
+                    <div class="col-5">
+                        <label for="year">Ano:</label>
+                        <input formControlName="year" id="year" class="form-control"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="number" maxlength="4"
+                            [ngClass]="{'is-invalid': vehicleForm.get('year')?.errors && (vehicleForm.get('year')?.touched || vehicleForm.get('year')?.dirty),
+                            'is-valid': !vehicleForm.get('year')?.errors && (vehicleForm.get('year')?.touched || vehicleForm.get('year')?.dirty)}">
+                        <span class="text-danger"
+                            *ngIf="vehicleForm.get('year')?.errors?.required && (vehicleForm.get('year')?.touched || vehicleForm.get('year')?.dirty)">
+                            <p>Preencha o campo Ano</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="row margin-form ">
+                    <div class="col-5">
+                        <label for="plate">Marca:</label>
+                        <select class="form-control" formControlName="brand"
+                            [ngClass]="{'is-invalid': vehicleForm.get('brand')?.errors && (vehicleForm.get('brand')?.touched || vehicleForm.get('brand')?.dirty),
+                        'is-valid': !vehicleForm.get('brand')?.errors && (vehicleForm.get('brand')?.touched || vehicleForm.get('brand')?.dirty)}">
+                            <span class="text-danger"
+                                *ngIf="vehicleForm.get('brand')?.errors?.required && (vehicleForm.get('brand')?.touched || vehicleForm.get('brand')?.dirty)">
+                                <p>Preencha o campo Marca</p>
+                            </span>
+                            <option value="" selected disabled>Selecione a marca</option>
+                            <option *ngFor="let brands of brandsAndModels" value={{brands.brand}}>
+                                {{brands.brand}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-5">
+                        <label for="plate">Modelo:</label>
+                        <select class="form-control" formControlName="model"
+                            [ngClass]="{'is-invalid': vehicleForm.get('model')?.errors && (vehicleForm.get('model')?.touched || vehicleForm.get('model')?.dirty),
+                        'is-valid': !vehicleForm.get('model')?.errors && (vehicleForm.get('model')?.touched || vehicleForm.get('model')?.dirty)}">
+                            <span class="text-danger"
+                                *ngIf="vehicleForm.get('model')?.errors?.required && (vehicleForm.get('model')?.touched || vehicleForm.get('model')?.dirty)">
+                                <p>Preencha o campo Modelo</p>
+                            </span>
+                            <option value="" selected disabled>Selecione o modelo</option>
+                            <option *ngFor="let model of models" value={{model}}>
+                                {{model}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row margin-form ">
+                    <div class="col-5">
+                        <label for="chassi">Chassi:</label>
+                        <input formControlName="chassi" id="chassi" type="text" class="form-control text-uppercase"
+                            maxlength="17"
+                            [ngClass]="{'is-invalid': vehicleForm.get('chassi')?.errors && (vehicleForm.get('chassi')?.touched || vehicleForm.get('chassi')?.dirty),
+                            'is-valid': !vehicleForm.get('chassi')?.errors && (vehicleForm.get('chassi')?.touched || vehicleForm.get('chassi')?.dirty)}">
+                        <span class="text-danger"
+                            *ngIf="vehicleForm.get('chassi')?.errors?.required && (vehicleForm.get('chassi')?.touched || vehicleForm.get('chassi')?.dirty)">
+                            <p>Preencha o campo Chassi</p>
+                        </span>
+                    </div>
+                    <div class="col-5">
+                        <label for="renavam">Renavam:</label>
+                        <input formControlName="renavam" id="renavam" class="form-control"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="number" maxlength="11"
+                            [ngClass]="{'is-invalid': vehicleForm.get('renavam')?.errors && (vehicleForm.get('renavam')?.touched || vehicleForm.get('renavam')?.dirty),
+                            'is-valid': !vehicleForm.get('renavam')?.errors && (vehicleForm.get('renavam')?.touched || vehicleForm.get('renavam')?.dirty)}">
+                        <span class="text-danger"
+                            *ngIf="vehicleForm.get('renavam')?.errors?.required && (vehicleForm.get('renavam')?.touched || vehicleForm.get('renavam')?.dirty)">
+                            <p>Preencha o campo Renavam</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="vehicleForm.invalid">Salvar</button>
+        </div>
+    </form>

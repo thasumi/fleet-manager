@@ -1,0 +1,53 @@
+<div class="container-main">
+    <div class="container-fluid">
+        <div class="card shadow-sm">
+            <div class="card-header flex-space">
+                <h4> {{'VEÍCULOS'}}</h4>
+                <div class="clickable" (click)="createVehicle('create')">Adicionar&nbsp;&nbsp;<i
+                        class="bi bi-plus-lg"></i></div>
+            </div>
+            <div class="card-body">
+                    <div class="col-3 search-container">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="btn bi bi-search search-icon">
+                                </i>
+                            </span>
+                            <input class="form-control" type="text" [formControl]="searchForm">
+                        </div>
+                    </div>
+                <table class="table table responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">PLACA</th>
+                            <th scope="col">MARCA</th>
+                            <th scope="col">MODELO</th>
+                            <th scope="col">CHASSI</th>
+                            <th scope="col">RENAVAM</th>
+                            <th scope="col">ANO</th>
+                            <th class="align-center" scope="col">EDITAR</th>
+                            <th class="align-center" scope="col">EXCLUIR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vehicle of vehicles | slice: (page-1) * pageSize : page * pageSize">
+                            <td class="text-uppercase">{{vehicle.plate}}</td>
+                            <td>{{vehicle.brand}}</td>
+                            <td>{{vehicle.model}}</td>
+                            <td class="text-uppercase">{{vehicle.chassi}}</td>
+                            <td>{{vehicle.renavam}}</td>
+                            <td>{{vehicle.year}}</td>
+                            <td class="align-center click"><i class="bi bi-pencil-square click"
+                                    (click)="editVehicle(vehicle,'update')" data-mdb-target="#exampleModal"></i>
+                            </td>
+                            <td (click)="deleteVehicle(vehicle.id)" class="align-center click"><i
+                                    class="bi bi-trash"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ngb-pagination class="center" [(page)]="page" [pageSize]="pageSize"
+                    [collectionSize]="vehicles.length"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>

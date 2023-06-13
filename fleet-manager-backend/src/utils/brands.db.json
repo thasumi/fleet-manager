@@ -1,7 +1,7 @@
 [
     {
-      "marca": "Volkswagen",
-      "modelos": [
+      "brand": "Volkswagen",
+      "models": [
         "Gol",
         "Fox",
         "Up",
@@ -12,20 +12,22 @@
       ]
     },
     {
-      "marca": "Chevrolet",
-      "modelos": [
+      "brand": "Chevrolet",
+      "models": [
         "Onix",
         "Prisma",
         "Cruze",
         "Cobalt",
         "Tracker",
         "Spin",
-        "S10"
+        "S10",
+        "Corsa",
+        "Celta"
       ]
     },
     {
-      "marca": "Ford",
-      "modelos": [
+      "brand": "Ford",
+      "models": [
         "Fiesta",
         "Focus",
         "Fusion",
@@ -36,8 +38,8 @@
       ]
     },
     {
-      "marca": "Fiat",
-      "modelos": [
+      "brand": "Fiat",
+      "models": [
         "Palio",
         "Uno",
         "Siena",
@@ -48,8 +50,8 @@
       ]
     },
     {
-      "marca": "Toyota",
-      "modelos": [
+      "brand": "Toyota",
+      "models": [
         "Corolla",
         "Hilux",
         "Etios",
@@ -60,8 +62,8 @@
       ]
     },
     {
-      "marca": "Honda",
-      "modelos": [
+      "brand": "Honda",
+      "models": [
         "Civic",
         "Fit",
         "City",
@@ -72,8 +74,8 @@
       ]
     },
     {
-      "marca": "Hyundai",
-      "modelos": [
+      "brand": "Hyundai",
+      "models": [
         "HB20",
         "Creta",
         "Elantra",
@@ -84,8 +86,8 @@
       ]
     },
     {
-      "marca": "Jeep",
-      "modelos": [
+      "brand": "Jeep",
+      "models": [
         "Renegade",
         "Compass",
         "Cherokee",
