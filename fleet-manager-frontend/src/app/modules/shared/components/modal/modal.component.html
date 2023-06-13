@@ -11,12 +11,15 @@
                     <div class="form-group col-5">
                         <label for="plate">Placa:</label>
                         <input formControlName="plate" id="plate" type="text" class="form-control text-uppercase"
-                            maxlength="7"
                             [ngClass]="{'is-invalid': vehicleForm.get('plate')?.errors && (vehicleForm.get('plate')?.touched || vehicleForm.get('plate')?.dirty),
-                  'is-valid': !vehicleForm.get('plate')?.errors && (vehicleForm.get('plate')?.touched || vehicleForm.get('plate')?.dirty)}">
+                  'is-valid': !vehicleForm.get('plate')?.errors && (vehicleForm.get('plate')?.touched || vehicleForm.get('plate')?.dirty)} || vehicleForm.get('plate')?.errors?.invalidPlate">
                         <span class="text-danger"
                             *ngIf="vehicleForm.get('plate')?.errors?.required && (vehicleForm.get('plate')?.touched || vehicleForm.get('plate')?.dirty)">
                             <p>Preencha o campo Placa</p>
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="vehicleForm.get('plate')?.errors?.invalidPlate">
+                            <p>Placa inválida</p>
                         </span>
                     </div>
                     <div class="col-5">

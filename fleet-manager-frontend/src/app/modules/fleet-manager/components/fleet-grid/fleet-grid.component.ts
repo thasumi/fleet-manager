@@ -5,6 +5,7 @@ import { FleetManagerService } from 'src/app/services/fleet-manager.service';
 import { ModalComponent } from 'src/app/modules/shared/components/modal/modal.component';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-fleet-grid',
@@ -26,15 +27,16 @@ export class FleetGridComponent {
     private fleetManagerService: FleetManagerService,
     private modalService: NgbModal,
     private toastr: ToastrService,
-    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {
 
   }
   ngOnInit(): void {
+    this.spinner.show();
     this.getVehicles();
-
     this.searchForm.valueChanges.subscribe(change => {
       this.vehicles = this.search(change);
+      this.spinner.hide();
     })
   }
 
@@ -67,6 +69,7 @@ export class FleetGridComponent {
     this.fleetManagerService.getAllVehicles().subscribe(res => {
       this.vehicles = res;
       this.unfilteredVehicles = this.vehicles;
+      this.spinner.hide();
     });
   }
 

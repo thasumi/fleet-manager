@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { BrandsAndModels, Vehicle, VehicleCreate } from 'src/app/models/vehicleModel';
 import { FleetManagerService } from 'src/app/services/fleet-manager.service';
+import { plateValidator } from 'src/app/utils/plateValidator';
 
 @Component({
   selector: 'app-modal',
@@ -29,13 +31,15 @@ export class ModalComponent {
     private modalService: NgbModal,
     private fleetManagerService: FleetManagerService,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.getBrandsAndModels();
     this.vehicleForm = this.formBuilder.group({
-      plate: ['', Validators.required],
+      plate: ['', Validators.required, plateValidator()],
       brand: ['', Validators.required],
       model: ['', Validators.required],
       chassi: ['', Validators.required],
@@ -44,6 +48,7 @@ export class ModalComponent {
     })
     this.vehicleForm.controls.brand.valueChanges.subscribe(() => {
       this.brandChangeFilter();
+      this.spinner.hide();
     });
 
   }
@@ -56,10 +61,13 @@ export class ModalComponent {
     this.fleetManagerService.getBrandsAndModels().subscribe(res => {
       this.brandsAndModels = res;
       this.checkEditOrCreate();
+      this.spinner.hide();
+
     })
   }
 
   brandChangeFilter() {
+    this.spinner.show();
     this.models = [];
     this.brand = this.vehicleForm.get('brand')?.value;
     if (this.brand) {
@@ -72,8 +80,6 @@ export class ModalComponent {
   checkEditOrCreate() {
     if (this.action === 'update') {
       this.filteredBrand = this.brandsAndModels.filter(item => item.brand === this.vehicle.brand);
-      console.log(this.filteredBrand)
-      console.log(this.vehicle.model);
       this.vehicleForm.get('plate')?.setValue(this.vehicle.plate);
       this.vehicleForm.get('brand')?.setValue(this.vehicle.brand);
       this.vehicleForm.get('model')?.setValue(this.vehicle.model);
@@ -84,9 +90,8 @@ export class ModalComponent {
   }
 
 
-
-
   submit() {
+    this.spinner.show();
     if (this.action === 'update') {
       if (confirm("Deseja realmente editar este veículo?")) {
         if (this.vehicleForm.dirty && this.vehicleForm.valid) {
@@ -123,10 +128,12 @@ export class ModalComponent {
   processSuccess(response: any) {
     this.toastr.success(response.message, ('Sucesso'), { timeOut: 30000, extendedTimeOut: 30000 });
     this.close();
+    this.spinner.hide();
   }
 
   processFail(response: any) {
     this.toastr.error(response.error, ('Erro'), { timeOut: 30000, extendedTimeOut: 30000 });
+    this.spinner.hide();
   }
 }
 

@@ -31,10 +31,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let vehicle of vehicles | slice: (page-1) * pageSize : page * pageSize">
-                            <td>{{vehicle.plate}}</td>
+                            <td class="text-uppercase">{{vehicle.plate}}</td>
                             <td>{{vehicle.brand}}</td>
                             <td>{{vehicle.model}}</td>
-                            <td>{{vehicle.chassi}}</td>
+                            <td class="text-uppercase">{{vehicle.chassi}}</td>
                             <td>{{vehicle.renavam}}</td>
                             <td>{{vehicle.year}}</td>
                             <td class="align-center click"><i class="bi bi-pencil-square click"

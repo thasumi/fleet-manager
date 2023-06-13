@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -9,7 +10,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'fleet-manager-frontend';
 
-  constructor() {
+  constructor(private spinner: NgxSpinnerService) {
     
+  }
+
+  ngOnInit(): void {
+
   }
 }
