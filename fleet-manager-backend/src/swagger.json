@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Ai qualquer merda",
+        "description": "Fleet manager Swagger",
         "version": "1.0.0",
         "title": "Tasks API",
         "contact": {
@@ -162,6 +162,27 @@
                 }
             }
         },
+        "/brandsAndModels": {
+            "get": {
+                "summary": "Get all brands and models",
+                "description": "Gets all brands and models in the db",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/allBrandsAndModelsResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/deleteVehicleById/{id}": {
             "delete": {
                 "summary": "Deletes a vehicle",
@@ -268,6 +289,17 @@
                 },
                 "year": {
                     "type": "number"
+                }
+            }
+        },
+        "allBrandsAndModelsResponse": {
+            "type": "object",
+            "properties": {
+                "brand":{
+                    "type":"string"
+                },
+                "models":{
+                    "type": "array"
                 }
             }
         }
